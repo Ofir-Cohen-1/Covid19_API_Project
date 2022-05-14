@@ -155,7 +155,10 @@ function createChart(continent) {
     const chartEl = document.createElement("canvas");
     chartContainerEl.innerHTML = "";
     chartContainerEl.appendChild(chartEl);
-    chartEl.setAttribute("height", (window.screen.availHeight / 3).toString());
+    chartEl.setAttribute(
+      "height",
+      (window.screen.availHeight / 3.5).toString()
+    );
     chartEl.setAttribute("width", (window.screen.availHeight * 0.8).toString());
     Chart.defaults.global.defaultFontColor = colors[1];
     const chart = new Chart(chartEl, {
@@ -187,8 +190,8 @@ function createCountryChart(country) {
   const chartEl = document.createElement("canvas");
   chartContainerEl.innerHTML = "";
   chartContainerEl.appendChild(chartEl);
-  chartEl.setAttribute("height", (window.screen.availHeight / 2).toString());
-  chartEl.setAttribute("width", "600");
+  chartEl.setAttribute("height", (window.screen.availHeight / 4).toString());
+  chartEl.setAttribute("width", (window.screen.availHeight * 0.9).toString());
   const chart = new Chart(chartEl, {
     type: "doughnut",
     data: {
@@ -218,7 +221,7 @@ function createCountryChart(country) {
 
 //check screen size, if not enough, display a message
 function checkScreenSize() {
-  if (window.screen.availWidth > 700) {
+  if (window.screen.availWidth > 800) {
     return true;
   } else {
     const screenSizeMsgEl = document.createElement("p");
