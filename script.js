@@ -190,7 +190,7 @@ function createChart(continent) {
 
 function createCountryChart(country) {
   const chartEl = document.createElement("canvas");
-  chartEl.innerHTML = "";
+  chartContainerEl.innerHTML = "";
   chartContainerEl.appendChild(chartEl);
   chartEl.setAttribute("class", "");
   chartEl.setAttribute("height", "300");
