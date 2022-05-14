@@ -93,10 +93,15 @@ header {
 
 .stats-container .btn {
   font-size: 12px;
-  padding: 8px 15px;
+  padding: 8px 14px;
+}
+
+.countries-container {
+  text-align: center;
 }
 
 .btn-country {
+  font-size: 14px;
   background-color: var(--color-2);
   padding: 3px 6px;
   margin: 2px;
@@ -108,6 +113,31 @@ header {
   color: var(--color-1);
   background-color: var(--color-4);
 }
+
+.screen-size-msg {
+  background-color: white;
+  padding: 50px 100px;
+}
+
 .display-none {
   display: none;
+}
+
+@media (max-height: 600px) {
+  header {
+    padding: 5px;
+  }
+  .main {
+    height: 80vh;
+  }
+  .btn {
+    font-size: 14px;
+    padding: 8px 18px;
+  }
+  .stats-container .btn {
+    padding: 8px 12px;
+  }
+  .btn-country {
+    padding: 3px 6px;
+  }
 }

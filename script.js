@@ -31,22 +31,20 @@ class CovidData {
   }
 }
 
-//functions
-
 //event listeners
 continentsEL.forEach((continent) => {
   continent.addEventListener("click", (e) => {
+    if (!checkScreenSize()) return;
     getData(e.target.dataset.continent); //when 'click', recognize the continent in html file
     createChart(e.target.dataset.continent);
     state.continent = e.target.dataset.continent;
   });
-  //   console.log(continentsEL);
 });
 
 dataTypeEL.forEach((dataType) => {
+  if (!checkScreenSize()) return;
   dataType.addEventListener("click", (e) => {
     state.dataType = e.target.dataset.type; //state.dataType = data-type ('string')
-    // console.log(state.dataType);
     createChart(state.continent);
   });
 });
@@ -69,13 +67,11 @@ async function getApi(continent) {
     const countriesApi = await axios.get(
       `${cors}https://restcountries.herokuapp.com/api/v1/region/${continent}?fields=name;alpha2Code`
     );
-    // console.log(countriesApi);
     countriesApi.data.forEach((country) => {
       countries.push(new Country(country.name.common, country.cca2));
     });
     countriesMap[continent] = countries; //create key 'continent' in countriesMap obj. the value is arr of all countries by name and code in specific continent
     getCovidData(countries, continent);
-    console.log(countries);
   } catch (error) {
     console.log(error);
   }
@@ -97,7 +93,6 @@ async function fetchAll(countries, continent) {
     return axios.get(`${cors}https://corona-api.com/countries/${country.code}`);
   });
   let data = await Promise.all(countriesCodes); //data = arr of countries includes all the data per country. include also details from cors
-  //   console.log(data);
   data = data.forEach((country) => {
     const latestData = country.data.data.latest_data;
     covidPerCountryMap[country.data.data.name] = new CovidData(
@@ -108,7 +103,6 @@ async function fetchAll(countries, continent) {
       latestData.critical
     );
   });
-  //   console.log(covidPerCountryMap);
 
   amendData(continent);
   displayContent(continent);
@@ -142,6 +136,7 @@ function displayContent(continent) {
   createChart(continent);
 }
 
+//create button for each country
 function displayCountries(continent) {
   countriesMap[continent].forEach((country) => {
     const countryEl = document.createElement("button");
@@ -155,6 +150,7 @@ function displayCountries(continent) {
   });
 }
 
+//create a line chart
 function createChart(continent) {
   if (countriesMap[continent]) {
     const chartEl = document.createElement("canvas");
@@ -188,13 +184,13 @@ function createChart(continent) {
   }
 }
 
+//create a doughnut chart for a country
 function createCountryChart(country) {
+  if (!checkScreenSize()) return;
   const chartEl = document.createElement("canvas");
   chartContainerEl.innerHTML = "";
   chartContainerEl.appendChild(chartEl);
   chartEl.setAttribute("class", "");
-  chartEl.setAttribute("height", "300");
-  chartEl.setAttribute("width", "900");
   const chart = new Chart(chartEl, {
     type: "doughnut",
     data: {
@@ -220,12 +216,26 @@ function createCountryChart(country) {
       },
     },
   });
-};
+}
 
+//check screen size, if not enough, display a message
+function checkScreenSize() {
+  if (window.screen.availWidth > 700) {
+    return true;
+  } else {
+    const screenSizeMsgEl = document.createElement("p");
+    screenSizeMsgEl.innerText =
+      "Sorry, screen size too small. Try tiling your device to landscape mode";
+    screenSizeMsgEl.classList.add("screen-size-msg");
+    chartContainerEl.appendChild(screenSizeMsgEl);
+    return false;
+  }
+}
+
+//extract data from storage and return it
 function getCovidDataPerContinent(continent, type) {
   const covidData = countriesMap[continent].map((country) => {
     return covidPerCountryMap[country.name][type]; // covidPerCountryMap[country.name] = all countries per continent: CovidData {continent: 'asia', confirmed: 155019, deaths: 7198, recovered: 123527, critical: 24294}
   });
-  // console.log(covidData);
   return covidData;
-};
+}
