@@ -10,12 +10,14 @@
   margin: 0;
   box-sizing: border-box;
 }
+
 body {
   font-family: "Roboto", sans-serif;
   font-size: 16px;
   min-height: 100vh;
   background-color: var(--color-4);
 }
+
 header {
   background: var(--color-1);
   padding: 20px;
@@ -23,6 +25,7 @@ header {
   margin-bottom: 10px;
   color: white;
 }
+
 .chart-container {
   margin: 0 auto;
   width: 90%;
@@ -31,6 +34,7 @@ header {
 .main {
   min-height: 60vh;
 }
+
 .main__opening {
   display: flex;
   flex-direction: column;
@@ -38,12 +42,15 @@ header {
   align-items: center;
   color: var(--color-1);
 }
+
 .chart-container__opening h1 {
   font-size: 3rem;
 }
+
 .chart-container__opening h2 {
   font-size: 2rem;
 }
+
 .loading-spinner {
   margin: 0 auto;
   margin-top: 30px;
@@ -61,11 +68,13 @@ header {
     transform: rotate(360deg);
   }
 }
+
 .control-area {
   background-color: var(--color-3);
   min-height: 30vh;
   padding-top: 5px;
 }
+
 .continents-container {
   display: flex;
   justify-content: center;
