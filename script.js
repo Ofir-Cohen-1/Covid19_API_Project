@@ -35,15 +35,15 @@ class CovidData {
 continentsEL.forEach((continent) => {
   continent.addEventListener("click", (e) => {
     if (!checkScreenSize()) return;
+    state.continent = e.target.dataset.continent;
     getData(e.target.dataset.continent); //when 'click', recognize the continent in html file
     createChart(e.target.dataset.continent);
-    state.continent = e.target.dataset.continent;
   });
 });
 
 dataTypeEL.forEach((dataType) => {
-  if (!checkScreenSize()) return;
   dataType.addEventListener("click", (e) => {
+    if (!checkScreenSize()) return;
     state.dataType = e.target.dataset.type; //state.dataType = data-type ('string')
     createChart(state.continent);
   });
@@ -103,7 +103,6 @@ async function fetchAll(countries, continent) {
       latestData.critical
     );
   });
-
   amendData(continent);
   displayContent(continent);
 }
@@ -156,7 +155,6 @@ function createChart(continent) {
     const chartEl = document.createElement("canvas");
     chartContainerEl.innerHTML = "";
     chartContainerEl.appendChild(chartEl);
-    chartEl.setAttribute("class", "");
     chartEl.setAttribute("height", "300");
     chartEl.setAttribute("width", "900");
     Chart.defaults.global.defaultFontColor = colors[1];
@@ -186,11 +184,11 @@ function createChart(continent) {
 
 //create a doughnut chart for a country
 function createCountryChart(country) {
-  if (!checkScreenSize()) return;
   const chartEl = document.createElement("canvas");
   chartContainerEl.innerHTML = "";
   chartContainerEl.appendChild(chartEl);
-  chartEl.setAttribute("class", "");
+  chartEl.setAttribute("height", "400");
+  chartEl.setAttribute("width", "900");
   const chart = new Chart(chartEl, {
     type: "doughnut",
     data: {
@@ -227,6 +225,7 @@ function checkScreenSize() {
     screenSizeMsgEl.innerText =
       "Sorry, screen size too small. Try tiling your device to landscape mode";
     screenSizeMsgEl.classList.add("screen-size-msg");
+    chartContainerEl.innerHTML = "";
     chartContainerEl.appendChild(screenSizeMsgEl);
     return false;
   }
