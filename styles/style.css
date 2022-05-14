@@ -25,8 +25,9 @@ header {
 }
 .chart-container {
   margin: 0 auto;
-  width: 90vw;
+  width: 90%;
 }
+
 .main {
   min-height: 60vh;
 }
