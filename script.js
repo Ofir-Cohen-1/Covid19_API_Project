@@ -2,7 +2,6 @@
 const state = { continent: null, dataType: "confirmed" };
 const continentsList = ["asia", "europe", "africa", "america"];
 const countriesMap = {};
-const covidPerContinentMap = {};
 const covidPerCountryMap = {};
 const cors = "https://intense-mesa-62220.herokuapp.com/";
 const colors = { 1: "#6C4A4A", 2: "#C89595", 3: "#DDBEBE", 4: "#EDEDED" };
