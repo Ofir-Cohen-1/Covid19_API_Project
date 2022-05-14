@@ -1,3 +1,10 @@
+:root {
+  --color-1: #ff4500;
+  --color-2: #ff7f50;
+  --color-3: #ffa07a;
+  --color-4: #ffefd5;
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -6,4 +13,100 @@
 body {
   font-family: "Roboto", sans-serif;
   font-size: 16px;
+  min-height: 100vh;
+  background-color: var(--color-4);
+}
+header {
+  background: var(--color-1);
+  padding: 20px;
+  text-align: center;
+  margin-bottom: 10px;
+  color: white;
+}
+.chart-container {
+  margin: 0 auto;
+  width: 90vw;
+}
+.main {
+  min-height: 60vh;
+}
+.main__opening {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--color-1);
+}
+.chart-container__opening h1 {
+  font-size: 3rem;
+}
+.chart-container__opening h2 {
+  font-size: 2rem;
+}
+.loading-spinner {
+  margin: 0 auto;
+  margin-top: 30px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 15px solid var(--color-3);
+  border-top: var(--color-2) 15px solid;
+  animation: rotate 1.5s linear infinite;
+  z-index: 10;
+}
+@keyframes rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.control-area {
+  background-color: var(--color-3);
+  min-height: 30vh;
+  padding-top: 5px;
+}
+.continents-container {
+  display: flex;
+  justify-content: center;
+}
+
+.stats-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.btn {
+  background-color: var(--color-1);
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  transition: all 0.2s ease-in-out;
+  opacity: 0.7;
+}
+
+.stats-container .btn {
+  font-size: 12px;
+  padding: 8px 15px;
+}
+
+.btn-country {
+  background-color: var(--color-2);
+  padding: 3px 6px;
+  margin: 2px;
+}
+
+.btn-country:hover {
+  transition: all 0.2s ease-in-out;
+  opacity: 1;
+  color: var(--color-1);
+  background-color: var(--color-4);
+}
+.display-none {
+  display: none;
 }

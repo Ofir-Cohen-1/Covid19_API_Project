@@ -11,20 +11,30 @@
     <title>Covid-19</title>
   </head>
   <body>
-    <div class="chart-container"></div>
-    <div class="stats-container">
-        <button data-type="confirmed">Confirmed</button>
-        <button data-type="deaths">Deaths</button>
-        <button data-type="recovered">Recovered</button>
-        <button data-type="critical">Critical</button>
+    <header><h2>Covid-19 data world wide</h2></header>
+    <div class="main">
+      <div class="chart-container"></div>
+      <div class="main__opening">
+        <h1>Welcome</h1>
+        <h2>Please select a region below</h2>
+      </div>
+      <div class="loading-spinner display-none"></div>
     </div>
-    <div class="continents-container">
-      <button class="btn" data-continent="asia">Asia</button>
-      <button class="btn" data-continent="europe">Europe</button>
-      <button class="btn" data-continent="africa">Africa</button>
-      <button class="btn" data-continent="americas">Americas</button>
+    <div class="control-area">
+      <div class="continents-container">
+        <button class="btn" data-continent="asia">Asia</button>
+        <button class="btn" data-continent="europe">Europe</button>
+        <button class="btn" data-continent="africa">Africa</button>
+        <button class="btn" data-continent="americas">Americas</button>
+      </div>
+      <div class="stats-container">
+        <button class="btn" data-type="confirmed">Confirmed</button>
+        <button class="btn" data-type="deaths">Deaths</button>
+        <button class="btn" data-type="recovered">Recovered</button>
+        <button class="btn" data-type="critical">Critical</button>
+      </div>
+      <div class="countries-container"></div>
     </div>
-    <div class="countries-container"></div>
     <script src="/script.js"></script>
   </body>
 </html>
