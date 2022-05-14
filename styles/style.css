@@ -117,6 +117,8 @@ header {
 .screen-size-msg {
   background-color: white;
   padding: 50px 100px;
+  text-align: center;
+  font-size: 18px;
 }
 
 .display-none {

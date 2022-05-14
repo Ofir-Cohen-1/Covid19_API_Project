@@ -159,7 +159,7 @@ function createChart(continent) {
       (window.screen.availHeight / 3.5).toString()
     );
     chartEl.setAttribute("width", (window.screen.availHeight * 0.8).toString());
-    Chart.defaults.global.defaultFontColor = colors[1];
+    // Chart.defaults.global.defaultFontColor = colors[1];
     const chart = new Chart(chartEl, {
       type: "line",
       data: {
