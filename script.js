@@ -155,8 +155,8 @@ function createChart(continent) {
     const chartEl = document.createElement("canvas");
     chartContainerEl.innerHTML = "";
     chartContainerEl.appendChild(chartEl);
-    chartEl.setAttribute("height", "300");
-    chartEl.setAttribute("width", "900");
+    chartEl.setAttribute("height", (window.screen.availHeight / 3).toString());
+    chartEl.setAttribute("width", (window.screen.availHeight * 0.8).toString());
     Chart.defaults.global.defaultFontColor = colors[1];
     const chart = new Chart(chartEl, {
       type: "line",
@@ -187,8 +187,8 @@ function createCountryChart(country) {
   const chartEl = document.createElement("canvas");
   chartContainerEl.innerHTML = "";
   chartContainerEl.appendChild(chartEl);
-  chartEl.setAttribute("height", "400");
-  chartEl.setAttribute("width", "900");
+  chartEl.setAttribute("height", (window.screen.availHeight / 2).toString());
+  chartEl.setAttribute("width", "600");
   const chart = new Chart(chartEl, {
     type: "doughnut",
     data: {
