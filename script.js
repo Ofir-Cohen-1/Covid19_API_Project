@@ -31,22 +31,28 @@ class CovidData {
 }
 
 //event listeners
-continentsEL.forEach((continent) => {
-  continent.addEventListener("click", (e) => {
-    if (!checkScreenSize()) return;
-    state.continent = e.target.dataset.continent;
-    getData(e.target.dataset.continent); //when 'click', recognize the continent in html file
-    createChart(e.target.dataset.continent);
+function continentEx() {
+  continentsEL.forEach((continent) => {
+    continent.addEventListener("click", (e) => {
+      if (!checkScreenSize()) return;
+      state.continent = e.target.dataset.continent;
+      getData(e.target.dataset.continent); //when 'click', recognize the continent in html file
+      createChart(e.target.dataset.continent);
+    });
   });
-});
+}
+continentEx();
 
-dataTypeEL.forEach((dataType) => {
-  dataType.addEventListener("click", (e) => {
-    if (!checkScreenSize()) return;
-    state.dataType = e.target.dataset.type; //state.dataType = data-type ('string')
-    createChart(state.continent);
+function typeEx() {
+  dataTypeEL.forEach((dataType) => {
+    dataType.addEventListener("click", (e) => {
+      if (!checkScreenSize()) return;
+      state.dataType = e.target.dataset.type; //state.dataType = data-type ('string')
+      createChart(state.continent);
+    });
   });
-});
+}
+typeEx();
 
 //functions
 //check if data exists. if not, get it from api
@@ -154,12 +160,9 @@ function createChart(continent) {
     const chartEl = document.createElement("canvas");
     chartContainerEl.innerHTML = "";
     chartContainerEl.appendChild(chartEl);
-    chartEl.setAttribute(
-      "height",
-      (screen.availHeight / 3.2).toString()
-    );
+    chartEl.setAttribute("height", (screen.availHeight / 3.2).toString());
     chartEl.setAttribute("width", (screen.availHeight * 0.8).toString());
-     console.log(chartEl);  
+    console.log(chartEl);
     Chart.defaults.color = colors[1];
     const chart = new Chart(chartEl, {
       type: "line",
@@ -190,9 +193,9 @@ function createCountryChart(country) {
   const chartEl = document.createElement("canvas");
   chartContainerEl.innerHTML = "";
   chartContainerEl.appendChild(chartEl);
-  chartEl.setAttribute("height", (screen.availHeight / 4).toString());
-  chartEl.setAttribute("width", (screen.availHeight * 0.9).toString());
-  console.log(chartEl);    
+  chartEl.setAttribute("height", (screen.offsetHeight / 4).toString());
+  chartEl.setAttribute("width", (screen.offsetHeight * 0.9).toString());
+  console.log(chartEl);
   const chart = new Chart(chartEl, {
     type: "doughnut",
     data: {
